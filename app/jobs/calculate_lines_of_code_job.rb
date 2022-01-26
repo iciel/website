@@ -13,10 +13,8 @@ class CalculateLinesOfCodeJob < ApplicationJob
 
     return unless iteration.submission.valid_filepaths.any?
 
-    # TODO: (Required) Set this through Exercism config
-    url = "https://internal.exercism.org/count_lines_of_code"
     body = RestClient.post(
-      url,
+      lines_of_code_counter_url,
       {
         track_slug: iteration.track.slug,
         submission_uuid: iteration.submission.uuid,
@@ -38,5 +36,9 @@ class CalculateLinesOfCodeJob < ApplicationJob
     return true if solution.published_iteration_id == iteration.id
 
     solution.published_iteration_id.nil? && solution.latest_iteration == iteration
+  end
+
+  def lines_of_code_counter_url
+    Exercism.config.tooling_lines_of_code_counter_url
   end
 end
