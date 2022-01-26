@@ -14,10 +14,8 @@ class GenerateIterationSnippetJob < ApplicationJob
     file = iteration.submission.files.first
     return unless file
 
-    # TODO: (Required) Set this through Exercism config
-    url = "https://internal.exercism.org/extract_snippet"
     snippet = RestClient.post(
-      url,
+      snippet_generator_url,
       {
         language: iteration.track.slug,
         source_code: file.content
@@ -37,10 +35,15 @@ class GenerateIterationSnippetJob < ApplicationJob
     raise
   end
 
+  private
   def should_update_solution?(iteration)
     solution = iteration.solution
     return true if solution.published_iteration_id == iteration.id
 
     solution.published_iteration_id.nil? && solution.latest_iteration == iteration
+  end
+
+  def snippet_generator_url
+    Exercism.config.tooling_snippet_generator_url
   end
 end
