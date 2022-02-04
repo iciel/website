@@ -236,7 +236,7 @@ module Components
           raw_results: {
             version: 1,
             status: "fail",
-            message: message
+            message:
           }
         Submission::TestRunsChannel.broadcast!(test_run)
 

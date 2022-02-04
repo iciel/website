@@ -126,7 +126,7 @@ class SerializeSubmissionTestRunTest < ActiveSupport::TestCase
       ops_status: 403,
       raw_results: {
         version: 2,
-        message: message
+        message:
       }
 
     serialized = SerializeSubmissionTestRun.(test_run)
@@ -142,8 +142,8 @@ class SerializeSubmissionTestRunTest < ActiveSupport::TestCase
     test_run = create :submission_test_run,
       ops_status: 403,
       raw_results: {
-        version: version,
-        output: output
+        version:,
+        output:
       }
 
     serialized = SerializeSubmissionTestRun.(test_run)

@@ -7,13 +7,13 @@ class Solution
       guard!
 
       begin
-        solution_class.create!(user: user, exercise: exercise).tap do |solution|
+        solution_class.create!(user:, exercise:).tap do |solution|
           record_activity!(solution)
         end
       rescue ActiveRecord::RecordNotUnique
         solution_class.find_by!(
-          user: user,
-          exercise: exercise
+          user:,
+          exercise:
         )
       end
     end
@@ -29,7 +29,7 @@ class Solution
         :started_exercise,
         user,
         track: exercise.track,
-        solution: solution
+        solution:
       )
     rescue StandardError => e
       Rails.logger.error "Failed to create activity"

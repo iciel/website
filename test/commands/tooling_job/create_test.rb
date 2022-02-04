@@ -15,10 +15,10 @@ class ToolingJob::CreateTest < ActiveSupport::TestCase
       expected = {
         foo: :bar,
         id: job.id,
-        submission_uuid: submission_uuid,
-        type: type,
-        language: language,
-        exercise: exercise,
+        submission_uuid:,
+        type:,
+        language:,
+        exercise:,
         created_at: Time.current.utc.to_i
       }.to_json
       assert_equal expected, redis.get("job:#{job.id}")

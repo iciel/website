@@ -80,7 +80,7 @@ class Solution::PublishTest < ActiveSupport::TestCase
     }.each do |solution, level|
       create :iteration, solution: solution
 
-      AwardReputationTokenJob.expects(:perform_later).once.with(solution.user, :published_solution, solution: solution, level: level)
+      AwardReputationTokenJob.expects(:perform_later).once.with(solution.user, :published_solution, solution:, level:)
       Solution::Publish.(solution, solution.user_track, nil)
     end
   end

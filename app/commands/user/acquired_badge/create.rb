@@ -8,7 +8,7 @@ class User
       def call
         # Check to see if it exists already before
         # doing any other expensive things
-        acquired_badge = User::AcquiredBadge.find_by(user: user, badge: badge)
+        acquired_badge = User::AcquiredBadge.find_by(user:, badge:)
         return acquired_badge if acquired_badge
 
         # Check if the badge should be awarded.
@@ -18,8 +18,8 @@ class User
         # Build the badge
         begin
           User::AcquiredBadge.create!(
-            user: user,
-            badge: badge
+            user:,
+            badge:
           ).tap do |uab|
             User::Notification::CreateEmailOnly.(user, :acquired_badge, user_acquired_badge: uab) if badge.send_email_on_acquisition?
 
@@ -31,8 +31,8 @@ class User
         # in parallel to this command
         rescue ActiveRecord::RecordNotUnique
           User::AcquiredBadge.find_by!(
-            user: user,
-            badge: badge
+            user:,
+            badge:
           )
         end
       end

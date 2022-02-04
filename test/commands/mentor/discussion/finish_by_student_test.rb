@@ -129,7 +129,7 @@ class Mentor::Discussion::FinishByStudentTest < ActiveSupport::TestCase
       AwardReputationTokenJob.expects(:perform_later).with(
         discussion.mentor,
         :mentored,
-        discussion: discussion
+        discussion:
       )
 
       Mentor::Discussion::FinishByStudent.(discussion, rating)

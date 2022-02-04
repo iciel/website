@@ -12,7 +12,7 @@ class User::ReputationToken::CreateTest < ActiveSupport::TestCase
       User::ReputationToken::Create.(
         user,
         :exercise_contribution, {
-          contributorship: contributorship
+          contributorship:
         }
       )
     end
@@ -25,7 +25,7 @@ class User::ReputationToken::CreateTest < ActiveSupport::TestCase
     User::ReputationToken::Create.(
       user,
       :exercise_contribution, {
-        contributorship: contributorship
+        contributorship:
       }
     )
 
@@ -39,7 +39,7 @@ class User::ReputationToken::CreateTest < ActiveSupport::TestCase
     User::ReputationToken::Create.(
       user,
       :exercise_contribution, {
-        contributorship: contributorship
+        contributorship:
       }
     )
 
@@ -54,7 +54,7 @@ class User::ReputationToken::CreateTest < ActiveSupport::TestCase
       User::ReputationToken::Create.(
         user,
         :exercise_contribution, {
-          contributorship: contributorship
+          contributorship:
         }
       )
     end

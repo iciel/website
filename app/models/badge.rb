@@ -7,10 +7,10 @@ class Badge < ApplicationRecord
     raise "Incorrect Rarity" unless RARIRIES.include?(rarity)
 
     @seed_data = {
-      name: name,
-      rarity: rarity,
-      icon: icon,
-      description: description
+      name:,
+      rarity:,
+      icon:,
+      description:
     }
   end
 

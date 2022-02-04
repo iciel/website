@@ -32,10 +32,10 @@ class Submission::TestRunTest < ActiveSupport::TestCase
     tests = [{ 'status' => 'pass' }]
 
     raw_results = {
-      version: version,
-      status: status,
-      message: message,
-      tests: tests
+      version:,
+      status:,
+      message:,
+      tests:
     }
     tr = create :submission_test_run, raw_results: raw_results
     assert_equal status.to_sym, tr.status
@@ -81,18 +81,18 @@ class Submission::TestRunTest < ActiveSupport::TestCase
       'output' => output
     }]
 
-    tr = create :submission_test_run, raw_results: { tests: tests }
+    tr = create :submission_test_run, raw_results: { tests: }
     assert_equal 1, tr.test_results.size
     result = tr.test_results.first
 
     test_as_hash = {
-      name: name,
+      name:,
       status: status.to_sym,
-      test_code: test_code,
-      message: message,
+      test_code:,
+      message:,
       message_html: message,
-      expected: expected,
-      output: output,
+      expected:,
+      output:,
       output_html: "<span style='color:#A00;'>Hello</span><span style='color:#00A;'>World</span>"
     }
 
